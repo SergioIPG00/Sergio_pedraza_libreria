@@ -14,7 +14,7 @@ def call(boolean abortPipeline) {
             
             // Determinar si se debe cortar el pipeline
             if (abortPipeline || shouldAbortPipeline(branchName)) {
-                error "QualityGate de SonarQube no pasó. Abortando el pipeline."
+                error "QualityGate de SonarQube no pasó. Abortando el pipeline. ${branchName}"
             }
         }
     } catch (Exception e) {
