@@ -1,10 +1,10 @@
 // script: sonarAnalysis.groovy
 
 @NonCPS
-def call(String abortPipeline) {
-    abortPipeline = abortPipeline ?: "false"
+def call(boolean abortPipeline) {
+    abortPipeline = abortPipeline ?: false
     
-    boolean abort = abortPipeline.toBoolean() // Convertir el valor de String a boolean
+    //boolean abort = abortPipeline.toBoolean() // Convertir el valor de String a boolean
     
     try {
         timeout(time: 5, unit: 'MINUTES') {
@@ -14,7 +14,7 @@ def call(String abortPipeline) {
             // Simular resultado exitoso
             def sonarQubeResult = "SUCCESS"
             
-            if (abort && sonarQubeResult != "SUCCESS") {
+            if (abortPipeline && sonarQubeResult != "SUCCESS") {
                 error "QualityGate de SonarQube no pasó. Abortando el pipeline."
             }
         }
