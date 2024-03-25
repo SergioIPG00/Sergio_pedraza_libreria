@@ -4,8 +4,6 @@
 def call(boolean abortPipeline) {
     abortPipeline = abortPipeline ?: false
     
-    //boolean abort = abortPipeline.toBoolean() // Convertir el valor de String a boolean
-    
     try {
         timeout(time: 5, unit: 'MINUTES') {
             echo "Ejecución de las pruebas de calidad de código"
