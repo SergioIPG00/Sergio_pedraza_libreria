@@ -1,3 +1,5 @@
+// script: sonarAnalysis.groovy
+
 @NonCPS
 def call(Boolean abortPipeline) {
     abortPipeline = abortPipeline ?: false // Asigna false si abortPipeline es nulo
