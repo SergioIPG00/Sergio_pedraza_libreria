@@ -1,8 +1,6 @@
 @NonCPS
-def call(boolean abortPipeline) {
-    // Obtener el nombre de la rama de Git desde la variable de entorno BRANCH_NAME
-    def branchName = env.BRANCH_NAME ?: ''
-    
+def call(boolean abortPipeline, String branchName) {
+        
     try {
         timeout(time: 5, unit: 'MINUTES') {
             echo "Ejecución de las pruebas de calidad de código"
@@ -13,7 +11,7 @@ def call(boolean abortPipeline) {
             
             // Determinar si se debe cortar el pipeline
             if (abortPipeline || shouldAbortPipeline(branchName)) {
-                error "QualityGate de SonarQube no pasó. Abortando el pipeline."
+                error "QualityGate de SonarQube no pasó. Abortando el pipeline. ${branchName}"
             }
         }
     } catch (Exception e) {
