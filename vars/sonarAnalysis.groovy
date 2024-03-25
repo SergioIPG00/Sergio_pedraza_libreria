@@ -2,6 +2,7 @@
 def call(boolean abortPipeline) {
     // Obtener el nombre de la rama de Git desde la variable de entorno BRANCH_NAME
     def branchName = env.BRANCH_NAME ?: ''
+    echo branchName
     
     try {
         timeout(time: 5, unit: 'MINUTES') {
