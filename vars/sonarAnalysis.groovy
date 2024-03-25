@@ -1,18 +1,20 @@
 @NonCPS
-def call(boolean abortPipeline = false) {
-    timeout(time: 5, unit: 'MINUTES') {
-        try {            
-            sh 'echo "Ejecución de las pruebas de calidad de código"'
+def call(Boolean abortPipeline) {
+    abortPipeline = abortPipeline ?: false // Asigna false si abortPipeline es nulo
+    
+    try {
+        timeout(time: 5, unit: 'MINUTES') {
+            echo "Ejecución de las pruebas de calidad de código"
+            sleep 30 // Simulación de tiempo de espera
             
-            sleep 30             
-            
+            // Simular resultado exitoso
             def sonarQubeResult = "SUCCESS"
-			
+            
             if (abortPipeline && sonarQubeResult != "SUCCESS") {
                 error "QualityGate de SonarQube no pasó. Abortando el pipeline."
             }
-        } catch (Exception e) {
-            error "Error en el escaneo de SonarQube: ${e.message}"
         }
+    } catch (Exception e) {
+        error "Error en el escaneo de SonarQube: ${e.message}"
     }
 }
