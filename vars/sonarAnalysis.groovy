@@ -1,3 +1,4 @@
+@NonCPS
 def call(boolean abortPipeline = false) {
     timeout(time: 5, unit: 'MINUTES') {
         try {            
