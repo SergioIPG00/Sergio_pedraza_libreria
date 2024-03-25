@@ -1,9 +1,6 @@
 @NonCPS
-def call(boolean abortPipeline) {
-    // Obtener el nombre de la rama de Git desde la variable de entorno BRANCH_NAME
-    def branchName = env.BRANCH_NAME ?: ''
-    echo branchName
-    
+def call(boolean abortPipeline, String branchName) {
+        
     try {
         timeout(time: 5, unit: 'MINUTES') {
             echo "Ejecución de las pruebas de calidad de código"
